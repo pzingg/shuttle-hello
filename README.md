@@ -53,3 +53,15 @@ axum = "0.5"
 shuttle-service = { version = "0.2", features = ["web-axum"] }
 sync_wrapper = "0.1"
 ```
+
+### Install `cargo-shuttle` and authorize with your GitHub identity.
+
+```
+cargo install cargo-shuttle
+cargo shuttle login
+```
+
+After authorizing, you will be redirected to a page displaying your API key.
+You can copy the API key and paste it into the terminal window, or copy
+the full `cargo shuttle login --api-key <API_KEY>` command, quit the
+terminal and re-run `cargo shuttle login` with the supplied API key.
