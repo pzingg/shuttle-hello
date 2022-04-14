@@ -6,9 +6,11 @@ Just trying out `shuttle-service`.
 
 ### Create new project
 
-1. `cargo new shuttle_hello --lib`
-2. Add `crate-type = ["cydlib"]` to `[lib]` key in Cargo.toml.
-3. Add dependencies to `[dependencies]` key in Cargo.toml:
+1. `cargo new shuttle-hello --lib`
+2. Add `description`, `authors`, `license`, `homepage`, and `repository` fields
+    to `[package]` section of Cargo.toml.
+3. Add `crate-type = ["cydlib"]` to `[lib]` section of Cargo.toml.
+4. Add rocket dependencies to `[dependencies]` section of Cargo.toml:
 
 ```
 rocket = "0.5.0-rc.1"
@@ -62,6 +64,45 @@ cargo shuttle login
 ```
 
 After authorizing, you will be redirected to a page displaying your API key.
-You can copy the API key and paste it into the terminal window, or copy
-the full `cargo shuttle login --api-key <API_KEY>` command, quit the
-terminal and re-run `cargo shuttle login` with the supplied API key.
+You can copy the API key and paste it into the terminal window, which
+is prompting for input, or copy the full login command displayed,
+quit the terminal and re-run `cargo shuttle login` with the supplied API key:
+
+```
+cargo shuttle login --api-key <API_KEY>
+```
+
+### Deploy
+
+You must have all changes committed to your local git repository.
+Then:
+
+```
+cargo shuttle deploy
+```
+
+Build output shows:
+
+```
+   Packaging shuttle-hello v0.1.0 (/home/pzingg/Projects/rust/shuttle_hello)
+   Archiving .cargo_vcs_info.json
+   Archiving .gitignore
+   Archiving Cargo.toml
+   Archiving Cargo.toml.orig
+   Archiving README.md
+   Archiving src/lib.rs
+   ...
+   Compiling shuttle-hello v0.1.0 (/opt/unveil/crates/shuttle-hello)
+    Finished dev [unoptimized + debuginfo] target(s) in 1m 24s
+
+        Project:            shuttle-hello
+        Deployment Id:      <DEPLOYMENT_UUID>
+        Deployment Status:  DEPLOYED
+        Host:               shuttle-hello.shuttleapp.rs
+        Created At:         2022-04-14 19:16:22.577369173 UTC
+        Database URI:       postgres://<USER:PASSWORD>@pg.shuttle.rs/db-shuttle-hello
+```
+
+### Success:
+
+Visit https://shuttle-hello.shuttleapp.rs/hello
